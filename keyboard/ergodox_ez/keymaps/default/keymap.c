@@ -6,6 +6,10 @@
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
 
+enum {
+    ALFRED_DASH = 1,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
@@ -123,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LALT(LGUI(KC_I)), KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
        LALT(LGUI(KC_U)), KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       M(ALFRED_DASH),   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                            KC_TRNS, KC_TRNS,
                                                     KC_TRNS,
                                   KC_BTN1, KC_BTN2, KC_TRNS,
@@ -152,6 +156,11 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           register_code(KC_RSFT);
         } else {
           unregister_code(KC_RSFT);
+        }
+        break;
+        case ALFRED_DASH:
+        if (record->event.pressed) {
+          return MACRO( D(LCTL), D(SPC), U(SPC), U(LCTL), T(D), T(A), T(S), T(H), T(SPC), END );
         }
         break;
       }
