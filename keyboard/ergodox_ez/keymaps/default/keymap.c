@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *  - AltCmdU = View Source(Safari/Chrome)
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | CmdSfF4|      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * | CmdSfF4|      |      |      |      |      | RESET|           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | AltCmdI|      |      | MsUp |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // MEDIA AND MOUSE
 [MDIA] = KEYMAP(
-       LSFT(LGUI(KC_4)), KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
+       LSFT(LGUI(KC_4)), KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, RESET,
        LALT(LGUI(KC_I)), KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
        LALT(LGUI(KC_U)), KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
