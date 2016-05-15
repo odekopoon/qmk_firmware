@@ -6,6 +6,17 @@
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
 
+// Custom Aliases
+// ref: ../../quantum/keymap_common.h
+#define A(kc)     LALT(kc)
+#define C(kc)     LCTL(kc)
+#define G(kc)     LGUI(kc)
+#define C_S(kc)   kc | 0x0100 | 0x0200 // `Ctrl + Shift + kc`(= `kc | 0x1400`)
+#define G_S(kc)   kc | 0x0800 | 0x0200 // `Gui + Shift + kc` (= `kc | 0x5000`)
+#define G_A(kc)   kc | 0x0800 | 0x0400 // `Gui + Alt + kc`   (= `kc | 0x6000`)
+#define G_S_T(kc) MT(0x8 | 0x2, kc)  // `Gui + Alt` or kc  (= `MT(0x12, kc)`)
+#define G_A_T(kc) MT(0x8 | 0x4, kc)  // `Gui + Alt` or kc  (= `MT(0x14, kc)`)
+
 enum {
     ALFRED_DASH = 1,
 };
@@ -42,8 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,         KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   MO(SYMB),
         KC_LGUI,        LT(MDIA,KC_A),KC_S,   KC_D,   KC_F,   KC_G,
         MO(SYMB),       KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   KC_LALT,
-        KC_GRV,         KC_TRNS,      LALT(KC_LSFT),  KC_LALT,KC_LCTRL,
-                                              ALT_T(KC_APP),  LSFT(LGUI(KC_SPC)),
+        KC_GRV,         KC_TRNS,      A(KC_LSFT),  KC_LALT,KC_LCTRL,
+                                              ALT_T(KC_APP),  G_S(KC_SPC),
                                                               KC_TRNS,
                                               KC_SPC,KC_BSPC, KC_LSFT,
         // right hand
@@ -125,9 +136,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // MEDIA AND MOUSE
 [MDIA] = KEYMAP(
-       LSFT(LGUI(KC_4)), KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, RESET,
-       LALT(LGUI(KC_I)), KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
-       LALT(LGUI(KC_U)), KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
+       G_S(KC_4), KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, RESET,
+       G_A(KC_I), KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
+       G_A(KC_U), KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        M(ALFRED_DASH),   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                            KC_TRNS, KC_TRNS,
