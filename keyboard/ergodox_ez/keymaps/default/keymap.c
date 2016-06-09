@@ -1,6 +1,7 @@
 #include "ergodox_ez.h"
 #include "debug.h"
 #include "action_layer.h"
+#include "action_util.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
@@ -186,6 +187,25 @@ void matrix_init_user(void) {
 
 };
 
+void light_led_on_pressed(void) {
+
+    ergodox_right_led_3_off();
+
+    for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
+      for (uint8_t col = 0; col < MATRIX_COLS; col++) {
+        if (matrix_is_on(row, col)) {
+
+          action_t action = layer_switch_get_action((keypos_t){ .row = row, .col = col });
+
+          if(IS_MOD(action.code)) {
+            ergodox_right_led_3_on();
+            break
+          }
+        }
+      }
+    }
+}
+
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
 
@@ -207,5 +227,7 @@ void matrix_scan_user(void) {
             // none
             break;
     }
+
+    light_led_on_pressed();
 
 };
