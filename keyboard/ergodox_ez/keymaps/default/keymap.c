@@ -199,7 +199,7 @@ void light_led_on_pressed(void) {
 
           if(IS_MOD(action.code)) {
             ergodox_right_led_3_on();
-            break
+            break;
           }
         }
       }
